@@ -1,0 +1,179 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+---
+
+# Merge conflicts are NOT evil
+
+During my career I discovered that there is a general aversion to merge conflicts.
+I've seen posts on reddit and on Twitter that people are trying to avoid them.
+People are writing tools for their IDE to avoid running in conflicts and delay
+their coding to avoid them.
+
+I want to explain why merge conflicts are not a bad thing and why try to avoiding
+them often costs you more time then resolving them.
+In this article we will take a focus on `git` and its usage of merge conflicts.
+
+Let's start with some explanation!
+
+## What is a merge conflict?
+
+The word "conflict" bas a negative flavor. A merge conflict in a version
+control system (VCS) like just wants to tell you:
+"Hey, I need your help to find the right version of the File". 
+Git can't identify what the right version is that should be used. So the VCS
+needs human eyes to tell which is correct.
+
+That's is basically it. But let's dive in: So how does such a merge conflict
+ looks like?
+
+Let's imagine we have 2 branches the master and a feature-a branch.
+
+Let's first look on the code in the master
+```php
+var $salary = user.getSalary()
+$salary = $salary + 2;
+return $salary
+```
+You want to edit the file and want to add 5 instead of 2 . So your code would look like this
+
+```php
+var $salary = user.getSalary()
+$salary = $salary + 5;
+return $salary
+```
+
+Without noticing someone else updated the code to this:
+```php
+var $salary = user.getSalary()
+$salary = $salary + 10;
+return $salary
+```
+
+So when you try to merge you will receive a merge conflict.
+The merge conflict looks like:
+
+```php
+var $salary = user.getSalary()
+<<<<<<< HEAD
+$salary = $salary + 5;
+=======
+$salary = $salary + 10;
+>>>>>>> feature-a
+return $salary
+```
+
+It may seem cryptic and may overwhelm you a bit (Especially when your changes
+are getting bigger)but is very simple.
+
+* `<<<<<<<` means this are the changes that are on the current branch e.g. your
+ master and varies from your previously checkout version of this branch.
+* `=======` is just the separator between the current code on the master and
+ your code on the other branch
+* `>>>>>>>` is the end of the changes of your branch.
+
+So in fact you just need to tell git: "Ok that's the state I want". So just
+modify the code, so that you think this is correct.
+
+## Merge Conflicts are not bad
+
+Merge conflicts are natural.
+They are part of the development process and should be handled as such.
+It is necessary to have merge conflicts, imagine the time when the whole
+changes were simply overwritten.
+You had to the conflict resolving manually or wait until you can even
+start to code.
+
+With merge conflicts we have a proper tool, that can be used to identify
+interferences in the code base.
+We just need to tell git what is correct and what not.
+There is no more need to wait to start your development.
+You can work entirely independent of the state from other developers. 
+
+There a several tools that can be used to resolve merge conflicts before
+they happen on a big scale.
+
+## Learn to Rebase
+
+Rebase. This word spread fear among some engineers. The best conversation I had
+was the following:
+
+```
+Colleague: "Hey Niels, Gitlab shows me that I have merge conflicts with the
+current branch."
+Me: "Well you could rebase your branch and force ..."
+Colleague: "REBASING? Are you crazy? For such a simple task I shall rebase?"
+```
+Well end of story he merged by hand and history of the feature branch looked
+like my desktop table: A mess.
+
+So what is rebasing is changing the history of your branch. You 
+
+Some simple rules:
+
+**Never, never, never rebase the master**
+
+**You should not rebase shared branches** (branches with where multiple people use)
+
+If you are working alone you can rebase as much as you want without hesitation.
+Try to understand how rebasing works.
+Don't be afraid of it.
+
+## Don't blame the tool, blame the process
+
+If you look at social media or in actual work enviroments you always find
+discussion, where someone says something familiar as: 
+"That's all nice, but I can't do that if my feature branch is too big.".
+
+I totally agree, but often its the fault of the process and the people
+involved and not the tools fault.
+Big branches with a lot of changes are often not necessary and can be
+separated into smaller chunks that can be handled a lot better, than big
+changes.
+
+Blame the established process, try to improve it, together with your team.
+
+## Break your big changes into small changes
+
+Big changes have a lot of flaws: it can be hardly reviewed, the development
+process is hard to follow and to resolve merge conflicts on it is like working
+in hell.
+
+Breaking your changes from big changes into smaller changes requires discipline.
+Discipline to change the workflow and to think in smaller steps.
+
+But its worth it.
+Encourage a culture where big sudden changes are considered as flaw and
+as something you as community don't want.
+
+## Everything can be undone
+
+We are working with git, so have the power to revert the changes.
+Don't be afraid to break things you can also fix them.
+
+This is still my favorite image to solve git problems for people
+who are afraid if something went wrong
+(by [Justin Hileman](http://justinhileman.info/article/git-pretty/)):
+
+![Git Pretty](/image/git-pretty.png): 
+
+You can follow such commands but you should understand what happens when
+executing them.
+
+## Try to understand git
+
+Most people try to remember just a few commands that they use on a daily basis.
+But these few commands won't help you if you don't understand their concept.
+
+![Memorizing](/image/memorizing-six-git-commands.jpg)
+
+Don't just learn the execution order of some commands.
+Try to understand what the concept behind git is and not just the commands.
+A good start is the official (and free) git book: https://git-scm.com/book/en/v2
+Please take your time at work or at home to understand this.
+
+So please don't consider merge conflicts as evil.
+Accept them as a process you need to do and learn about them.
+
+If you want to try how good you are at git, try this awesome application:
+https://learngitbranching.js.org

@@ -1,0 +1,200 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+---
+
+<h1>Pull Requests are actually really good</h1>
+
+<p>So I recently ran into this Video from the Chanel "Continous Delivery" on YouTube which has the title "Why Pull
+    Requests Are A BAD IDEA".
+
+    <a href="https://www.youtube.com/watch?v=ASOSEiJCyEM&ab_channel=ContinuousDelivery">Don't use Pull Requests</a>
+</p>
+<p>
+    Additionally, I discovered this article:
+    <a href="https://betterprogramming.pub/are-pull-requests-holding-back-your-team-e8aec48986c2">
+        Pull Requests are holding back your team
+    </a>
+    from David Masters.
+</p>
+<p>
+    It looks like there is kind of a movement to abandon the idea of Pull Requests. Based on the Like-Comment-Ration on
+    the video and the article, you can see that this is not an easy topic to grasp.
+    In fact it is a topic that is based on multiple layers.
+
+    I for one, love working with Pull Requests and can see extreme benefits of using them on the entire development
+    team.
+</p>
+
+
+<h2> Don't let a Pull Request block you </h2>
+
+<img src="https://images.prismic.io/hatica/bad0b582-33be-423d-b801-3e9ad9189af1_async-work-ogimage-3.png?ixlib=gatsbyFP&amp;auto=compress%2Cformat&amp;fit=max&amp;q=50&amp;rect=0%2C0%2C1440%2C756&amp;w=1200&amp;h=630" class="blog_image">
+<br>
+<p>
+    This is a common mistake with pull requests: A pull request should never block you.
+</p>
+<p>
+    You should never wait for someone to accept a Pull Request. We're working with Git so use the power to create a
+    branch
+    based on the changes and start working on the next ticket.
+    This is not an easy task, but a task you and your colleagues should take time to learn. Practice how to resolve
+    Merge Conflicts and how to rebase your development branches.
+</p>
+<p>
+    Talk directly with your colleagues if possible. You don't have make everything via the build-in comment system, you
+    can also talk to other developers.
+    It is not forbidden and sometimes even faster to talk to someone and sometimes this is the best way to resolve
+    conflicts that couldn't be done through text.
+</p>
+<p>
+    If you have problems getting the code in the right time, create "Service Level Agreements" (SLA) and routines that
+    allows you to ship the product as fast as possible.
+    Create rules when a Pull Request can be skipped. Talk with your Incident Management and talk with your Product
+    Management to create something that helps in your work environment.
+</p>
+<p>
+    A pull request is the perfect opportunity for asynchronous working.
+    File in a pull request and start the next task and come back later if someone has feedback for you.
+    So basically open the Pull Request and forget about it, you'll get a notice if you want e.g. when you check your
+    mailbox.
+    Do the next important task, don't let it be in your mind. Your time is precious don't let others take it from you.
+</p>
+<p>
+    It is important to develop your writing skills if you want to go all the way on the async path. A simple "Are you
+    sure?" or "Could we do this better?" is not enough.
+    Write down your thoughts on this matter and most important: be nice about it. Nobody likes assholes and the
+    Tec-World is full of them, so be one less.
+</p>
+
+
+<h2> Pull Requests vs. Code Reviews vs. Pair Programming </h2>
+<img src="https://images.squarespace-cdn.com/content/v1/55e9e8bfe4b0f0ebf5859eae/1476907040235-RB5HAODKV9K685QYU8UL/image-asset.jpeg?format=1000w" class="blog_image">
+<br>
+<p>
+    I used a "versus" in this headline, but really don't think that these techniques are enemies.
+    They all have their individual techniques, but should be viewed separately and an addition to each other.
+    A pull request should be an addition to the code review and pair programming. These aren't alternatives to each other.
+</p>
+<p>
+    I am a fan of an upfront code review, so review that is made before it is merged into the main branch.
+    A pull request can help you with your code reviews. In tools like Gitlab or Github, code comments and suggestions
+    can be added very easily.
+    So these two can benefit from each other.
+</p>
+<p>
+    Pair Programming can also be used in combination with Pull Requests. Just sit together, do your programming stuff
+    together with a colleague,
+    the one who programmed opens a PR and the second person accept this PR. Viola Pair Programming documented directly
+    in your Git history with Pull Requests.
+</p>
+
+
+<h2> Trunk Based Development </h2>
+<p>
+    A trunk based development does NOT mean that you can't have feature branches and pull requests.
+    It just says that long-lived feature-branches must be avoided and merged as early as possible.
+    This means that there is NO "dev" branch that is merged after a few weeks or just once a month.
+    Everything happens on the "trunk" and the "trunk" is the branch that will be shipped on the production system.
+    Trunk based development does not mean "Commit every change to the trunk", it just means that you don't use a development branch that will be merged months or weeks later into the trunk.
+    Nobody wants that. Create small, simple branches that can be fastly reviewed.
+    Nearly everything can be break down in very simple and very small chunks, just try it out.
+</p>
+<p>
+    And remember, reverting certain commits could be more time-consuming, then a discussed pull request.
+</p>
+<p>
+    A Pull Request can help you to keep your history cleaner, because you may not need to revert as often, because the
+    code review and continuous integration pipeline
+    will be done before merging this request.
+    It's not granted, but a pull request can help you with this, by showing how these features or bugfixes were
+    developed, but it is just one step cleaner than not doing it.
+</p>
+<p>
+    Please check also this site: <a href="https://trunkbaseddevelopment.com/">https://trunkbaseddevelopment.com/</a>
+    Which explains it better in much more detail than I ever could in this simple block post.
+</p>
+
+
+<h2> Line of Defense </h2>
+<img src="https://external-preview.redd.it/tPGj-5ixJ-87dW31ator6cW4lVJjdDp-e2TJMNR2MO4.jpg?auto=webp&s=5dab5d390471def9bbd6ed2c76067c1a457854cb" class="blog_image">
+<br>
+<p>
+    How many times did you broke production? Once? Multiple times? Never?
+    If you said never, you are lucky, but you will break things and won't be your last time.
+</p>
+<p>
+    A pull request can be your last line of defense, where a person can have a extra look, before the code goes to
+    production.
+    The person reviewing this PR needs to click, that the Pull Request has been reviewed. This may seem a little advantage
+    but that one click can save a lot of trouble on shipping day.
+</p>
+<p>
+    A pull request is not about trust. It's about protecting the product before shit hits the fan. But most important:
+    A Pull Request protecting you from breaking stuff and creating stress.
+    I can live with a bunch of open Pull Requests, but I don't want to be stressed out.
+    My job can be stressful, I don't need more of it.
+
+    Don't rush your features. I trust my colleagues (and myself), that they (and me) want to build the best software
+    possible.
+    We'll break things, if a Pull Request will avoid that once or twice it is worthy work habit.
+</p>
+<p>
+    In Germany there is term "Vorausschauendes Fahren" (which I looked up and found the term "anticipatory driving" and
+    I don't know if this is a thing :D).
+    If you are preparing for a driver license you'll learn this term and maybe asked for it in the exams.
+    It means if you driving a car, you also have to watch the other traffic participants and adapt your driving. Car is
+    going too fast?
+    Slow your own car, so you can see if the driver slows down.
+    See some kids on the sidewalk? Some kids could probably run on the street.
+    Don't let people (including yourself) crash the code. You can be the best programmer/driver possible. But sometimes
+    it is good if someone else is also looking at the street/code.
+</p>
+<p>
+    Every big company has quality insurance. I believe that companies like BMW trust their employees. Nontheless these company
+    will run some tests on these cars before they leave the factory.
+    We all wouldn't buy these cars if they don't run through these feedback loops.
+    And a pull request is nothing less. A required code review and a run through a CI-Pipeline before it hits production.
+</p>
+
+<p>
+    Via Pull Requests you can run Continuous-Integration pipelines on the code, before it reaches the main branch.
+    So you protect not only your product, but also other developers to run into this error and trigger a tickets or chat
+    messages
+    coming up.
+</p>
+
+<h2> Show the Progress </h2>
+<img src="https://i.imgflip.com/6g9kq3.jpg" title="made at imgflip.com" class="blog_image"/>
+<p>
+    A Pull Request can show what belongs together. Commits based on Reviews or commits that have been forgotten.
+    Every follow-up commit can be listed here.
+    If you wouldn't use PRs these commits are shattered all around the main branch and is harder to connect the dots,
+    if you are on a bug hunt and try to understand something in the history.
+    Even with Pull Requests this isn't a task you could avoid entirely, but because you are not committing directly on
+    the main branch, you are not seduced to make it directly on the main branch and scatter these commits on the timeline.
+</p>
+
+<p>
+    You are the chosen reviewer? But you don't have a clue about the topic?
+    No problem, just add your thoughts to the PR and add another Reviewer to the process.
+    I used at multiple times in my career and it was never useless.
+    Don't be afraid to get some experts in the feedback cycle if you are not sure about the topic.
+</p>
+
+<h2> Conclusion </h2>
+<p>
+    As you can see I'm a defender of pull requests. Something that makes Open Source better, can help companies to make
+    their
+    code better.
+</p>
+<p>
+    Let's face it, Open Source has most of the time a higher code quality standard than most companies.
+    And I think a big part here plays the Pull Requests. It helps async working, creating continuous delivery pipelines
+    and taking a better look on the code before it gets into the main branch.
+
+    I even use PRs for my private projects. Just to have a extra level of security.
+    I check the code before click the merge button and I can't count how many bugs and flaws I discovered before it was merged.
+
+    In my opinion this should be used by everyone, not every bug will be discovered by this, but it can save you and your team time and money.
+</p>
